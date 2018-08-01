@@ -69,23 +69,26 @@ $(function() {
         * clicked and does it hide when clicked again.
         */
         it('changes visibility when clicked', function() {
-          if($('body').toggleClass('menu-hidden') === false) {
-            expect($('body').hasClass('menu-hidden')).toBe(true);
-          }
-          else {
-            expect($('body').hasClass('menu-hidden')).toBe(false);
-          }
+          $('.menu-icon-link').click();
+          expect($('body').hasClass('menu-hidden')).toBe(false);
         });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
-
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+    describe('Initial Entries', function() {
+      /* TODO: Write a test that ensures when the loadFeed
+       * function is called and completes its work, there is at least
+       * a single .entry element within the .feed container.
+       * Remember, loadFeed() is asynchronous so this test will require
+       * the use of Jasmine's beforeEach and asynchronous done() function.
+       */
+       beforeEach(function(done) {
+         loadFeed(0, done);
+       });
+       it('has at least a single entry element in feed container', function() {
+         expect($('.feed').children.length > 0).toBe(true);
+       });
+    });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
