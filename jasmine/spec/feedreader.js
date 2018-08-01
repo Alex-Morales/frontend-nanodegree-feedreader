@@ -9,13 +9,13 @@
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
-    describe('RSS Feeds', function() {
+    describe('RSS Feeds', () => {
         /* This tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty.
          */
 
-        it('are defined', function() {
+        it('are defined', () => {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -24,7 +24,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-         it('URLs are defined', function() {
+         it('URLs are defined', () => {
            for(let feed of allFeeds) {
             expect(feed.url).toBeDefined();
             expect(feed.url).not.toBe(0);
@@ -36,7 +36,7 @@ $(function() {
          * and that the name is not empty.
          */
 
-         it('has a name for each feed', function() {
+         it('has a name for each feed', () => {
            for(let feed of allFeeds) {
              expect(feed.name).toBeDefined();
              expect(feed.name).not.toBe(0);
@@ -44,13 +44,13 @@ $(function() {
          });
     });
 
-    describe('The menu', function(){
+    describe('The menu', () => {
 
       /* This test ensures the menu element is
        * hidden by default.
        */
 
-       it('is hidden by default', function(){
+       it('is hidden by default', () => {
          expect($('body').hasClass('menu-hidden')).toBe(true);
        });
 
@@ -58,7 +58,7 @@ $(function() {
         * visibility when the menu icon is clicked
         */
 
-        it('changes visibility when clicked', function() {
+        it('changes visibility when clicked', () => {
           $('.menu-icon-link').click();
           expect($('body').hasClass('menu-hidden')).toBe(false);
           $('.menu-icon-link').click();
@@ -66,36 +66,36 @@ $(function() {
         });
     });
 
-    describe('Initial Entries', function() {
+    describe('Initial Entries', () => {
       /* This test  ensures when the loadFeed
        * function is called and completes its work, there is at least
        * a single .entry element within the .feed container.
        */
 
-       beforeEach(function(done) {
+       beforeEach(done => {
          loadFeed(0, done);
        });
-       it('has at least a single entry element in feed container', function() {
+       it('has at least a single entry element in feed container', () => {
          expect($('.feed .entry').length > 0).toBe(true);
        });
     });
 
-    describe('New Feed Selection', function() {
+    describe('New Feed Selection', () => {
       /* This test ensures that when a new feed is loaded
        * by the loadFeed function that the content actually changes.
        */
        let feed = document.querySelector('.feed');
        let feed1 = [];
        let feed2 = [];
-       beforeEach(function(done) {
+       beforeEach((done) => {
          loadFeed(0);
-         Array.from(feed.children).forEach(function(entry) {
+         Array.from(feed.children).forEach((entry) => {
            feed1.push(entry.innerText);
          });
          loadFeed(1,done);
        });
-       it('actually changes as new content is loaded', function() {
-         Array.from(feed.children).forEach(function(entry) {
+       it('actually changes as new content is loaded', () => {
+         Array.from(feed.children).forEach((entry) => {
            feed2.push(entry.innerText);
          });
          expect(feed1===feed2).toBe(false);
