@@ -72,9 +72,7 @@ $(function() {
        * a single .entry element within the .feed container.
        */
 
-       beforeEach(done => {
-         loadFeed(0, done);
-       });
+       beforeEach(done => loadFeed(0, done));
        it('has at least a single entry element in feed container', () => {
          expect($('.feed .entry').length > 0).toBe(true);
        });
