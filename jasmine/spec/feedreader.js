@@ -86,16 +86,19 @@ $(function() {
        let feed1 = [];
        let feed2 = [];
        beforeEach((done) => {
-         loadFeed(0);
-         Array.from(feed.children).forEach((entry) => {
-           feed1.push(entry.innerText);
+         loadFeed(0, function () {
+           Array.from(feed.children).forEach((entry) => {
+             feed1.push(entry.innerText);
+           });
+           console.log(feed1);
+           loadFeed(1,done);
          });
-         loadFeed(1,done);
        });
        it('actually changes as new content is loaded', () => {
          Array.from(feed.children).forEach((entry) => {
            feed2.push(entry.innerText);
          });
+         console.log(feed2);
          expect(feed1===feed2).toBe(false);
        });
     });
