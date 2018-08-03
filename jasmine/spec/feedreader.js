@@ -90,16 +90,17 @@ $(function() {
            Array.from(feed.children).forEach((entry) => {
              feed1.push(entry.innerText);
            });
-           console.log(feed1);
+           //console.log(feed1); //what's inside feed1 output
            loadFeed(1,done);
          });
        });
        it('actually changes as new content is loaded', () => {
-         Array.from(feed.children).forEach((entry) => {
+         Array.from(feed.children).forEach((entry,index) => {
            feed2.push(entry.innerText);
+           console.log(entry.innerText, feed1[index], entry.innerText===feed1[index]) //test feed1[index] vs. feed2[index] for t/f.
+           expect(entry.innerText===feed1[index]).toBe(false); //expect to be false unless no changes in feed.
          });
-         console.log(feed2);
-         expect(feed1===feed2).toBe(false);
+         //console.log(feed2); //what's inside feed2 output
        });
     });
 }());
